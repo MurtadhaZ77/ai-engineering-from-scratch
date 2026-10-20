@@ -126,3 +126,26 @@ print(f"Output shape: {output.shape}")
 print(weights)
 print(pre_activation)
 print(output)
+
+
+def random_matrix(rows, cols):
+    return Matrix([
+        [random.uniform(-1, 1) for _ in range(cols)]
+        for _ in range(rows)
+    ])
+
+
+def dense_layer(W, x, b):
+    pre_activation = W.matmul(x) + b
+    return relu_matrix(pre_activation)
+
+
+x = Matrix([[0.5], [0.8], [0.2]])
+b1 = Matrix([[0.1], [0.1], [0.1], [0.1]])
+b2 = Matrix([[0.1], [0.1]])
+
+hidden = dense_layer(random_matrix(4, 3), x, b1)
+output = dense_layer(random_matrix(2, 4), hidden, b2)
+print("hidden shape:", hidden.shape)
+print("output shape:", output.shape)
+print(output)
